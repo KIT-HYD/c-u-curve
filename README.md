@@ -1,5 +1,7 @@
 # c-u-curve
 
+[![DOI](https://zenodo.org/badge/445457359.svg)](https://zenodo.org/badge/latestdoi/445457359)
+
 This repository contains code for calculating the c-u-curve and some example applications.
 
 The c-u-curve method can be used to analyse, classify and compare dynamical systems of arbitrary dimension by the two key features uncertainty and complexity.
