@@ -24,7 +24,7 @@ clc
     % - order is ascending, minimum possible value is 1, maximum possible value is nt
     slice_widths = [1 2 4 8 16 32 64 128 256 512 1024 2048 nt]'; 
 
-% create test data set (random uniform)
+% create test data set (random normal)
     dummy = 2*randn(nt,1);                      % create data set
     vals = rescale(dummy,vals_min,vals_max);    % normalize to [0,1] range for convenient binning
     
