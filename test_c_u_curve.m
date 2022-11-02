@@ -1,8 +1,8 @@
-% Uwe Ehret, 2022/01/07
+% Uwe Ehret, 2022/11/01
 % This provides test application for the c-u-curve method
 % Required Matlab products: Matlab 9.9
-% For further explanations, please see the related publication below.Please cite this publication when applying the method.
-% REF
+% For further explanations, please see the related publication below. Please cite this publication when applying the method.
+% Ehret, U., and Dey, P.: Technical note: c-u-curve: A method to analyse, classify and compare dynamical systems by uncertainty and complexity, Hydrol. Earth Syst. Sci. Discuss., 2022, 1-12, 10.5194/hess-2022-16, 2022.
 
 clearvars
 clear all
@@ -41,7 +41,7 @@ clc
     edges_entropy{1} = linspace(0,log2(tot_nvb),neb+1); 
 
 % calculate uncertainty and complexity
-    [uncs,comps,ns,all_uncs] = f_c_u_curve(vals, edges_vals, edges_entropy, slice_widths);    
+    [uncs,comps,ns,all_uncs] = f_c_u_curve(vals, edges_vals, edges_entropy, slice_widths,0);    
     
 % calculate maximum and minimum possible uncertainty and complexity
 % - this is useful to put actual uncertainties and complexities into perspective
@@ -53,7 +53,7 @@ clc
     tot_nvb = prod(cellfun(@length,edges_vals)-1);  % total number of value bins for the entire ndim-dimensional space of values
     max_possible_unc = log2(tot_nvb);   % maximum possible uncertainty
     max_possible_comp = log2(neb);      % maximum posible complexity
-    min_possible_unce = 0;              % minimum possible uncertainty
+    min_possible_unc = 0;              % minimum possible uncertainty
     min_possible_comp = 0;              % minimum posible complexity
 
 %% Test data set: 2-d, deterministic
@@ -71,7 +71,7 @@ clc
     % - order is ascending, minimum possible value is 1, maximum possible value is nt
     slice_widths = [1 2 4 8 16 32 64 128 256 512 1024 2048 nt]'; 
     
-% create test data set (random uniform)
+% create test data set (random normal)
     dummy = 2*randn(nt,ndim);                   % create data set
     vals = rescale(dummy,vals_min,vals_max);    % normalize to [0,1] range for convenient binning    
     
@@ -90,7 +90,7 @@ clc
     edges_entropy{1} = linspace(0,log2(tot_nvb),neb+1); 
     
 % calculate uncertainty and complexity
-    [uncs,comps,ns,all_uncs] = f_c_u_curve(vals, edges_vals, edges_entropy, slice_widths);    
+    [uncs,comps,ns,all_uncs] = f_c_u_curve(vals, edges_vals, edges_entropy, slice_widths,0);    
 
 % calculate maximum and minimum possible uncertainty and complexity
 % - this is useful to put actual uncertainties and complexities into perspective
@@ -102,7 +102,7 @@ clc
     tot_nvb = prod(cellfun(@length,edges_vals)-1);  % total number of value bins for the entire ndim-dimensional space of values
     max_possible_unc = log2(tot_nvb);       % maximum possible uncertainty
     max_possible_comp = log2(neb);          % maximum posible complexity
-    min_possible_unce = 0;                  % minimum possible uncertainty
+    min_possible_unc = 0;                   % minimum possible uncertainty
     min_possible_comp = 0;                  % minimum posible complexity
 
 %% Test data set: 2-d, 3-member ensemble
@@ -120,7 +120,7 @@ clc
     % - order is ascending, minimum possible value is 1, maximum possible value is nt
     slice_widths = [1 2 4 8 16 32 64 128 256 512 1024 2048 nt]';  
     
-% create test data set (random uniform)
+% create test data set (random normal)
     dummy = 2*randn(nt,ndim,nens);                 % create data set
     vals = rescale(dummy,vals_min,vals_max);    % normalize to [0,1] range for convenient binning 
     
@@ -139,7 +139,7 @@ clc
     edges_entropy{1} = linspace(0,log2(tot_nvb),neb+1); 
     
 % calculate uncertainty and complexity
-    [uncs,comps,ns,all_uncs] =f_c_u_curve(vals, edges_vals, edges_entropy, slice_widths);    
+    [uncs,comps,ns,all_uncs] =f_c_u_curve(vals, edges_vals, edges_entropy, slice_widths,0);    
 
 % calculate maximum and minimum possible uncertainty and complexity
 % - this is useful to put actual uncertainties and complexities into perspective
@@ -151,7 +151,7 @@ clc
     tot_nvb = prod(cellfun(@length,edges_vals)-1);  % total number of value bins for the entire ndim-dimensional space of values
     max_possible_unc = log2(tot_nvb);   % maximum possible uncertainty
     max_possible_comp = log2(neb);      % maximum posible complexity
-    min_possible_unce = 0;              % minimum possible uncertainty
+    min_possible_unc = 0;              % minimum possible uncertainty
     min_possible_comp = 0;              % minimum posible complexity
      
      
